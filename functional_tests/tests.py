@@ -58,7 +58,6 @@ class NewVisitorTest(LiveServerTestCase):
         
         #he hits enter adn the page updates, now lsiting his todo as an item
         inputbox.send_keys(Keys.ENTER)
-
         self.wait_for_row_in_list_table("1: Buy peacock feathers")
         
         #the input box for new items is still there, he enters another to do
@@ -118,4 +117,4 @@ class NewVisitorTest(LiveServerTestCase):
         # Satisfied, they both go back to sleep
 
         #he is now satisfied
-        self.fail("Finish the test!")
+
