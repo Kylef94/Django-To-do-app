@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn server for DOMAIN
+
+[Service]
+Restart=on-failure
+User=kylef
+WorkingDirectory=/home/kylef/sites/DOMAIN
+EnvironmentFile=/home/kylef/sites/DOMAIN/.env
+
+ExecStart=/home/kylef/sites/DOMAIN/virtualenv/bin/gunicorn \
+    --bind unix:/tmp/DOMAIN.socket \
+    superlists.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
