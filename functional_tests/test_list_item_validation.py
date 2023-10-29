@@ -5,6 +5,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from .base import FunctionalTest
+from lists.forms import DUPLICATE_ITEM_ERROR, EMPTY_ITEM_ERROR
 from unittest import skip
 
 class ItemValidationTest(FunctionalTest):
@@ -56,10 +57,10 @@ class ItemValidationTest(FunctionalTest):
         
         #She sees a helpful error message
         self.wait_for(lambda: self.assertEqual(
-            self.get_error_element().text, "You've already got this in your list"
+            self.get_error_element().text, DUPLICATE_ITEM_ERROR
         ))
         
-    @skip
+
     def test_error_messages_are_cleared_on_input(self):
         #Edith starts a list and causes a validation error:
         self.browser.get(self.live_server_url)
@@ -68,11 +69,7 @@ class ItemValidationTest(FunctionalTest):
         self.wait_for_row_in_list_table('1: Banter too thick')
         self.get_item_input_box().send_keys('Banter too thick')
         self.get_item_input_box().send_keys(Keys.ENTER)
-        
-        self.wait_for(lambda: self.assertEqual(
-            self.get_error_element().text, "You've already got this in your list"
-        ))
-        
+
         self.wait_for(lambda: self.assertTrue(
             self.get_error_element().is_displayed()
         ))
