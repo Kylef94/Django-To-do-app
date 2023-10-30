@@ -1,5 +1,5 @@
 import random
-from fabric import append, exists, cd, env, local, run
+from fabric.api import *
 
 
 REPO_URL = 'https://github.com/Kylef94/Django-To-do-app'
